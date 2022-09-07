@@ -3,17 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
 import { GenericDto } from '../models/genericDto';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService extends HttpService {
 
-  private urlBase:string = 'http://10.102.1.72:9598/api/listoclientes/autenticacion/iniciar-sesion'
+  private urlBase:string = 'http://localhost:9598/api/listoclientes/autenticacion/iniciar-sesion'
 
-  constructor(private http:HttpClient) { }
+  constructor(protected override http:HttpClient) {
+    super(http);
+  }
 
   auth(usuario:Usuario): Observable<GenericDto>{
-    return this.http.post<GenericDto>(this.urlBase,JSON.parse(JSON.stringify(usuario)));
+    return super.post<GenericDto>(this.urlBase,JSON.parse(JSON.stringify(usuario)));
   }
 }

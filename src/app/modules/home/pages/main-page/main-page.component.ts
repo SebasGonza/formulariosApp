@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  token:string = ''
+
+  constructor() { this.iniciarToken() }
 
   ngOnInit(): void {
   }
 
+  iniciarToken():void{
+    this.token = localStorage.getItem('Token') || '';
+    console.log(this.token);
+  }
 }
