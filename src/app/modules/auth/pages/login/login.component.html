@@ -1,22 +1,22 @@
 <div class="background">
 
     <div class="login-design">
-        <h3>Sign In</h3>
-        <form>
+        <h3>Sign In </h3>
+        <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="login()"  >
             <div class="username">
-                <label for="">Nombre de usuario</label>
-                <br>
-                <input type="text" placeholder="nombre de usuario">
+                <label for="">Correo Electronico</label>
+                <input type="text" placeholder="Correo Electronico" formControlName="correo">
             </div>
             <div class="password">
                 <label for="">Contraseña</label>
-                <br>
-                <input type="password" placeholder="nombre de usuario">
+                <input type="password" placeholder="Contraseña" formControlName="password">
             </div>
 
             <div class="button1">
-                <button>Iniciar Sesión</button>
+                <button type="submit">Iniciar Sesión</button>
             </div>
+
+            <span *ngIf="respuestaError" class="texto-advertencia">{{error | titlecase}}</span>
 
         </form>
     </div>
